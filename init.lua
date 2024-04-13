@@ -24,9 +24,17 @@ local function startmode(modename)
   grabber:start()
 end
 
+function modalawesome.startmode(modename)
+  startmode(modename)
+end
+
 local function stopmode(modename)
   modalawesome.active_mode:set_text(modename)
   grabber:stop()
+end
+
+function modalawesome.stopmode(modename)
+  stopmode(modename)
 end
 
 local function create_default_mode_keybindings(modkey, default_mode)
