@@ -8,7 +8,7 @@ local hotkeys_popup = require("awful.hotkeys_popup.widget")
 local unpack = unpack or table.unpack -- luacheck: globals unpack (compatibility with Lua 5.1)
 
 local grabber, modes = {}
-local modalawesome = {sequence = textbox(), active_mode = textbox()}
+local modalawesome = { sequence = textbox(), active_mode = textbox() }
 
 local function grabkey(_, modifiers, key)
   local sequence = modalawesome.sequence.text .. key
@@ -39,14 +39,14 @@ end
 
 local function create_default_mode_keybindings(modkey, default_mode)
   -- need to find keynames for modifiers, e.g. Super_L and Super_R for Mod4
-  local keysyms = awesome._modifiers[modkey] or {{keysym = modkey}}
+  local keysyms = awesome._modifiers[modkey] or { { keysym = modkey } }
   local keybindings = {}
 
   for _, keysym in pairs(keysyms) do
-    table.insert(keybindings, {{}, keysym.keysym, function()
+    table.insert(keybindings, { {}, keysym.keysym, function()
       startmode(default_mode)
       modalawesome.sequence:set_text('')
-    end})
+    end })
   end
 
   return keybindings
@@ -64,9 +64,9 @@ local function markup(item)
 end
 
 local function create_hotkeys(modes_table, stop_name, default_mode, modkey, format)
-  local hotkeys = {[stop_name] = {{modifiers = {}, keys = {}}}}
+  local hotkeys = { [stop_name] = { { modifiers = {}, keys = {} } } }
   for modename, commands in pairs(modes_table) do
-    hotkeys[modename] = {{modifiers = {}, keys = {}}}
+    hotkeys[modename] = { { modifiers = {}, keys = {} } }
 
     local keys = hotkeys[modename][1].keys
     for _, command in ipairs(commands) do
